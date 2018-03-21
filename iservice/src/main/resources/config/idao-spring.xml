@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.ihome.data" />
+    <context:property-placeholder ignore-unresolvable="true"
+                                  location="classpath:/config/jdbc.properties" />
+
+    <bean id="driver" class="com.mysql.jdbc.Driver" />
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"-->
+          <!--destroy-method="close">-->
+        <!--<property name="driver" ref="driver" />-->
+        <!--<property name="driverClassName" value="${jdbc.driver}" />-->
+        <!--<property name="url" value="${jdbc.url}" />-->
+        <!--<property name="username" value="${jdbc.user}" />-->
+        <!--<property name="password" value="${jdbc.password}" />-->
+        <!--<property name="initialSize" value="10" />-->
+        <!--<property name="maxTotal" value="100" />-->
+        <!--<property name="maxIdle" value="100" />-->
+        <!--<property name="maxWaitMillis" value="-1" />-->
+    <!--</bean>-->
+    <!-- Hikari Datasource -->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close">
+        <!-- <property name="driverClassName" value="${jdbc.driver}" /> --> <!-- 无需指定，除非系统无法自动识别 -->
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.user}" />
+        <property name="password" value="${jdbc.password}" />
+        <!-- 连接只读数据库时配置为true， 保证安全 -->
+        <property name="readOnly" value="false" />
+        <!-- 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒 -->
+        <property name="connectionTimeout" value="30000" />
+        <!-- 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟 -->
+        <property name="idleTimeout" value="600000" />
+        <!-- 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';） -->
+        <property name="maxLifetime" value="1800000" />
+        <!-- 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count) -->
+        <property name="maximumPoolSize" value="15" />
+    </bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.ihome.data.entity"/>
+        <property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml" />
+        <property name="vfs" value="com.iteaj.core.orm.mybatis.OsgiVFSImpl" />
+        <property name="mapperLocations" value="classpath:config/mybatis/mapper/**/*.xml" />
+        <property name="typeAliasesSuperType" value="com.iteaj.core.orm.mybatis.EntityAliasSuperType" />
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ihome.data.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="markerInterface" value="com.iteaj.core.orm.mybatis.MapperDaoScanner" />
+    </bean>
+
+</beans>

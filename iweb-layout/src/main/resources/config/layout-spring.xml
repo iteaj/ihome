@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven  />
+    <context:component-scan base-package="com.ihome.web.layout.controller" />
+
+    <!-- 指定@ResponseBody注解需要的Json转换器 -->
+    <mvc:view-resolvers>
+        <mvc:jsp prefix="/web/" suffix=".jsp" cache-views="true" />
+        <mvc:content-negotiation>
+            <mvc:default-views>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+                    <property name="jsonpParameterNames">
+                        <set>
+                            <value>jsonp</value>
+                            <value>callback</value>
+                        </set>
+                    </property>
+                    <property name="contentType" value="text/html;charset=urf-8" />
+                </bean>
+            </mvc:default-views>
+        </mvc:content-negotiation>
+    </mvc:view-resolvers>
+
+    <!-- 指定处理静态文件的Servlet -->
+    <mvc:default-servlet-handler default-servlet-name="default" />
+
+    <!-- 文件上传解析 -->
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+        <!--<property name="defaultEncoding" value="UTF-8" />-->
+        <!--<property name="maxUploadSizePerFile" value="10240000"/>-->
+    <!--</bean>-->
+</beans>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ihome</artifactId>
+        <groupId>com.iteaj</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <packaging>bundle</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>iweb-layout</artifactId>
+
+    <properties>
+        <kar.features.level>80</kar.features.level>
+        <bundle.activator>com.ihome.web.layout.LayoutModuleActivator</bundle.activator>
+        <kar.features.file>G:\idea project\ihome\iweb-layout\src\main\resources\ihome-features.xml</kar.features.file>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.iteaj</groupId>
+            <artifactId>iweb-frame</artifactId>
+            <version>${version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Embed-Dependency>*;scope=provided;optional=true</Embed-Dependency>
+                    </instructions>
+                    <!--<buildDirectory>${project.karaf.deploy}</buildDirectory>-->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>karaf-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

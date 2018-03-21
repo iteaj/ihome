@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="Osmorc" url="file://$PROJECT_DIR$/icore" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/idao" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/iservice" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/iweb-frame" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/iweb-layout" />
+    <file type="web" url="file://$PROJECT_DIR$/iweb-frame" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/idao/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="Osmorc">
+    <option name="bundlesOutputPath" value="$PROJECT_DIR$/out/bundles" />
+    <option name="frameworkInstanceName" value="Felix (5.6.8)" />
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://karaf.apache.org/xmlns/features/v1.3.0" location="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

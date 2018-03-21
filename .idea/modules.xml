@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/icore/icore.iml" filepath="$PROJECT_DIR$/icore/icore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ihome.iml" filepath="$PROJECT_DIR$/ihome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iservice/iservice.iml" filepath="$PROJECT_DIR$/iservice/iservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iweb-frame/iweb-frame.iml" filepath="$PROJECT_DIR$/iweb-frame/iweb-frame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iweb-layout/iweb-layout.iml" filepath="$PROJECT_DIR$/iweb-layout/iweb-layout.iml" />
+    </modules>
+  </component>
+</project>
