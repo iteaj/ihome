@@ -19,14 +19,15 @@
     <properties>
         <encoding>UTF-8</encoding>
         <jetty.version>9.3.21.v20170918<!--9.4.6.v20170531--></jetty.version>
-        <karaf.version>4.1.5</karaf.version>
+        <karaf.version>4.2.0.M2</karaf.version>
         <bundle.activator></bundle.activator>
-        <kar.features.file></kar.features.file>
         <kar.features.level></kar.features.level>
-        <spring.version>4.3.10.RELEASE_1</spring.version>
+        <kar.features.file></kar.features.file>
+        <spring.version>5.0.2.RELEASE_1</spring.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <project.karaf.deploy>G:\idea project\ihome\karaf\deploy</project.karaf.deploy>
+        <project.bundle.deploy>${project.basedir}\karaf\deploy</project.bundle.deploy>
+        <project.karaf.deploy>${project.basedir}\karaf\deploy</project.karaf.deploy>
     </properties>
 
     <dependencies>
@@ -333,12 +334,6 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.karaf.tooling</groupId>
-                    <artifactId>karaf-maven-plugin</artifactId>
-                    <version>4.1.2</version>
-                    <extensions>true</extensions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.karaf.tooling</groupId>
                     <artifactId>features-maven-plugin</artifactId>
                     <version>2.4.4</version>
                 </plugin>
@@ -356,6 +351,12 @@
                             <configuration>
                                 <inputFile>${kar.features.file}</inputFile>
                                 <startLevel>${kar.features.level}</startLevel>
+                                <dependencyFeatures>
+                                    <!-- 启动spring-web feature -->
+                                    <feature dependency="true">spring-web</feature>
+                                    <!-- 启动spring-jdbc feature -->
+                                    <feature dependency="true">spring-jdbc</feature>
+                                </dependencyFeatures>
                                 <ignoreScopeProvided>true</ignoreScopeProvided>
                             </configuration>
                         </execution>

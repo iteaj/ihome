@@ -1,7 +1,6 @@
 package com.iteaj.core.osgi.spring.web;
 
 import com.iteaj.core.osgi.spring.OsgiBundleResourceLoader;
-import com.iteaj.core.osgi.spring.OsgiBundleResourcePatternResolver;
 import org.osgi.framework.BundleContext;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -16,12 +15,10 @@ public class OsgiXmlWebApplicationContext extends XmlWebApplicationContext {
 
     private BundleContext bundleContext;
     private OsgiBundleResourceLoader resourceLoader;
-    private OsgiBundleResourcePatternResolver resolver;
 
     public OsgiXmlWebApplicationContext(BundleContext bundleContext) {
         this.bundleContext = bundleContext;
         this.resourceLoader = new OsgiBundleResourceLoader(bundleContext.getBundle());
-        this.resolver = new OsgiBundleResourcePatternResolver(this.resourceLoader);
     }
 
     @Override
@@ -48,7 +45,7 @@ public class OsgiXmlWebApplicationContext extends XmlWebApplicationContext {
 
     @Override
     public Resource[] getResources(String locationPattern) throws IOException {
-        return resolver.getResources(locationPattern);
+        return null;
     }
 
     @Override

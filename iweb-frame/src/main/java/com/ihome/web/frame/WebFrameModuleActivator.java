@@ -1,7 +1,9 @@
 package com.ihome.web.frame;
 
+import com.ihome.web.frame.servlet.WebFrameServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -16,16 +18,10 @@ public class WebFrameModuleActivator implements BundleActivator {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Override
     public void start(BundleContext context) throws Exception {
-        String property = System.getProperty("jetty.home.bundle");
-        System.out.println(property);
-//        System.setProperty("jetty.home.bundle", "com.iteaj.iweb-frame");
-//        System.setProperty("jetty.etc.config.urls", "etc/jetty.xml");
-//        WebAppContext webapp = new WebAppContext();
-//        Dictionary props = new Hashtable();
-//        props.put("war",".");
-//        props.put("contextPath","/acme");
-//        props.put("managedServerName", "ihome.frame");
-//        context.registerService(ContextHandler.class.getName(),webapp,props);
+        ContextHandler handler = new ContextHandler();
+        Dictionary props = new Hashtable();
+        props.put("contextPath","/frame");
+        context.registerService(ContextHandler.class.getName(),handler,props);
     }
 
     @Override

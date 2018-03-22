@@ -10,6 +10,10 @@
     <packaging>bundle</packaging>
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <kar.features.level>80</kar.features.level>
+        <kar.features.file>${project.basedir}\src\main\resources\ihome-features.xml</kar.features.file>
+    </properties>
     <artifactId>icore</artifactId>
     <dependencies>
         <dependency>
@@ -34,6 +38,10 @@
                         <Export-Package>com.iteaj.core.*</Export-Package>
                     </instructions>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>karaf-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

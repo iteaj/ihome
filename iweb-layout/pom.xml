@@ -39,14 +39,10 @@
                     <instructions>
                         <Embed-Dependency>*;scope=provided;optional=true</Embed-Dependency>
                     </instructions>
-                    <!--<buildDirectory>${project.karaf.deploy}</buildDirectory>-->
+                    <!--<outputDirectory>${project.bundle.deploy}</outputDirectory>-->
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.karaf.tooling</groupId>
-                <artifactId>karaf-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 </project>
